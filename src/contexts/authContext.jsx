@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 const authContext = React.createContext({
   token: null,
   signup: () => {},
+  login: () => {},
 });
 
 export function AuthProvider({ children }) {
@@ -19,7 +20,15 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function signup(username, password) {
-    const url = URL_BASE + "/signup";
+    await authenticate(username, password, "signup");
+  }
+
+  async function login(username, password) {
+    await authenticate(username, password, "login");
+  }
+
+  async function authenticate(username, password, endpoint) {
+    const url = URL_BASE + `/${endpoint}`;
     const options = {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -44,13 +53,13 @@ export function AuthProvider({ children }) {
         throw new Error(error);
       }
     } catch (error) {
-      console.error("Error in signup function:", error);
+      console.error(`Error in ${endpoint} function:`, error);
       throw error;
     }
   }
 
   return (
-    <authContext.Provider value={{ token, signup }}>
+    <authContext.Provider value={{ token, signup, login }}>
       {children}
     </authContext.Provider>
   );
