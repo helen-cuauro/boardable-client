@@ -1,0 +1,11 @@
+.button {
+    display: inline-flex;
+    height: 36px;
+    padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-2, 8px);
+    flex-shrink: 0;
+    border-radius: var(--rounded-md, 6px);
+    background: var(--secondary, #e5e5e5);
+  }

@@ -1,9 +1,13 @@
-import { useRouteError } from "react-router-dom";
+import styles from "./styles.module.css";
+import logo from "../../assets/Vector.svg";
+import Header from "../Header";
 
-export default function Home() {
+function Home() {
   return (
-    <div>
-      <h1>Hola desde Home</h1>
+    <div className={styles.container}>
+      <Header />
     </div>
   );
 }
+
+export default Home;

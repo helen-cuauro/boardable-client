@@ -6,6 +6,7 @@ const authContext = React.createContext({
   token: null,
   signup: () => {},
   login: () => {},
+  logout: () => {},
 });
 
 export function AuthProvider({ children }) {
@@ -58,8 +59,13 @@ export function AuthProvider({ children }) {
     }
   }
 
+  function logout() {
+    setToken(null);
+    window.localStorage.removeItem(tokenKey);
+  }
+
   return (
-    <authContext.Provider value={{ token, signup, login }}>
+    <authContext.Provider value={{ token, signup, login, logout }}>
       {children}
     </authContext.Provider>
   );
