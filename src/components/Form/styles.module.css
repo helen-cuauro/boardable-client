@@ -1,0 +1,60 @@
+.form {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+  }
+  
+  .label {
+    color: #171717;
+    font-family: Inter;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  
+  .input {
+    padding: 8px 12px;
+    align-self: stretch;
+  
+    border-radius: 6px;
+    border: 1px solid #d4d4d4;
+    background: #fff;
+  }
+  
+  .button {
+    display: flex;
+    height: 44px;
+    padding: 8px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+  
+    border-radius: 6px;
+    background: #6d28d9;
+  }
+  
+
+  .error {
+    font-size: 18px;
+    color: tomato;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  .success{
+    font-size: 18px;
+    color: green;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+  
