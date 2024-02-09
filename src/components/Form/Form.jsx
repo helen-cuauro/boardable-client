@@ -2,20 +2,31 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 
-function Form({ type, onSubmit, isSubmitting, error, successMessage }) {
+function Form({
+  type,
+  onSubmit,
+  isSubmitting,
+  error,
+  successMessage,
+  setError,
+}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (password.length < 6) {
+      setError("La contraseña debe tener al menos 6 caracteres.");
+      return;
+    }
     onSubmit({ username, password });
     setRedirect(true);
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {error && <p className={styles.error}>{error}</p>}
       {successMessage && <p className={styles.success}>{successMessage}</p>}
       <div className={styles["input-group"]}>
         <label htmlFor="username" className={styles.label}>
@@ -44,6 +55,11 @@ function Form({ type, onSubmit, isSubmitting, error, successMessage }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {error && (
+          <spam className={styles.error} style={{ marginTop: "0.5rem" }}>
+            {error}
+          </spam>
+        )}
       </div>
       <button
         type="submit"

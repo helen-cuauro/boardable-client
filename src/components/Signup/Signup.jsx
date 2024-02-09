@@ -39,6 +39,7 @@ function Signup() {
         onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
         error={error}
+        setError={setError}
         successMessage={successMessage}
       />
       <Link to="/login" className={styles.enlace}>

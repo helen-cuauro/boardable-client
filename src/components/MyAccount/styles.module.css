@@ -1,0 +1,111 @@
+.container {
+  display: flex;
+  max-width: var(--width-5xl, 700px);
+  padding: var(--spacing-16, 64px) 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 82px;
+  align-self: stretch;
+
+  margin-inline: auto;
+}
+
+.title {
+  color: var(--foreground, #171717);
+
+  /* text-2xl/leading-8/bold */
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 133.333% */
+}
+
+.conatainer-form {
+  margin-inline: auto;
+}
+
+.form {
+  display: flex;
+  width: var(--width-xs, 320px);
+  max-width: var(--width-xs, 320px);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4, 16px);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-2, 8px);
+  align-self: stretch;
+}
+
+.label {
+  color: var(--foreground, #171717);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 14px; /* 100% */
+}
+
+.input {
+  display: flex;
+  height: 30px;
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+
+  border-radius: var(--rounded-md, 6px);
+  border: 1px solid var(--border, #d4d4d4);
+  opacity: 0.5;
+  background: var(--background, #fff);
+}
+
+.button-update {
+  display: flex;
+  height: 44px;
+  padding: var(--spacing-2, 8px) var(--spacing-8, 32px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  align-self: stretch;
+
+  border-radius: var(--rounded-md, 6px);
+  background: var(--primary, #6d28d9);
+
+  color: var(--primary-foreground, #fff);
+
+  /* text-sm/leading-5/medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.button-delete {
+  display: flex;
+  height: 44px;
+  padding: var(--spacing-2, 8px) var(--spacing-8, 32px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  align-self: stretch;
+
+  border-radius: var(--rounded-md, 6px);
+  border: 1px solid var(--danger-border, #dc2626);
+  background: var(--danger, #fef2f2);
+
+  color: var(--danger-foreground, #450a0a);
+
+  /* text-sm/leading-5/medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}

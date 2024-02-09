@@ -1,0 +1,40 @@
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.boardList {
+  list-style: none; /* Eliminar viñetas de la lista */
+  padding: 0; /* Eliminar el relleno predeterminado */
+}
+
+.boardItem {
+  display: flex;
+  width: 256px;
+  height: 144px;
+  padding: var(--spacing-4, 16px);
+  flex-direction: column;
+  gap: var(--spacing-4, 16px);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rounded-md, 6px);
+  background: #e2e8f0;
+}
+
+.boardTitle {
+  color: #171717;
+
+  /* text-lg/leading-8/semibold */
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: center;
+  
+}
+
+.boardLink {
+  text-decoration: none;
+}
