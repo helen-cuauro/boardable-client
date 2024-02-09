@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--rounded-md, 6px);
-  background: #e2e8f0;
+
 }
 
 .boardTitle {

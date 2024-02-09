@@ -4,7 +4,7 @@ import Signup from "./components/Signup";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import MyAccount from "./components/MyAccount/MyAccount";
-import Board from "./components/Board/Bord";
+import Board from "./components/Board/Board";
 
 const Router = () => {
   return (

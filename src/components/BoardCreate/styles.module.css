@@ -1,5 +1,4 @@
 .board-form {
-  background-color: #ffc0cb;
   display: flex;
   width: 256px;
   height: 144px;
@@ -9,7 +8,6 @@
   align-items: flex-start;
   gap: var(--spacing-4, 16px);
   border-radius: var(--rounded-md, 6px);
-  background: #e2e8f0;
 }
 
 .input-title-label {

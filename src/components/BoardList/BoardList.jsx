@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./styles.module.css";
 import { URL_BASE, tokenKey } from "../../constants";
-import BoardForm from "../BoardForm/BoardForm";
 import { Link } from "react-router-dom";
 import BoardContext from "../../contexts/boardContext";
+import BoardCreate from "../BoardCreate/BoardCreate";
 
 function BoardList() {
   const { setBoardTitle } = useContext(BoardContext);
@@ -33,17 +33,25 @@ function BoardList() {
     fetchBoards();
   }, []);
 
+  const handleBoardCreated = (newBoard) => {
+    setBoards([...boards, newBoard]); // Agrega el nuevo tablero a la lista de tableros
+  };
+
   return (
     <div>
       <ul className={styles.boardGrid}>
-        <BoardForm />
+        <BoardCreate onBoardCreated={handleBoardCreated} />
         {boards.map((board) => (
           <Link
             to="/board"
             className={styles.boardLink}
             onClick={() => setBoardTitle(board.title)}
           >
-            <li key={board.id} className={styles.boardItem}>
+            <li
+              key={board.id}
+              className={styles.boardItem}
+              style={{ backgroundColor: board.background_color }}
+            >
               <h1 className={styles.boardTitle}>{board.title}</h1>
             </li>
           </Link>

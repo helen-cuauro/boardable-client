@@ -2,10 +2,15 @@ import { useState } from "react";
 import styles from "./styles.module.css";
 import { URL_BASE, tokenKey } from "../../constants";
 import color from "../../assets/color.svg";
+import ColorPicker from "../ColorPicker/ColorPicker";
 
-function BoardForm() {
+function BoardCreate({ onBoardCreated }) {
   const [title, setTitle] = useState("");
-  const [boards, setBoards] = useState([]);
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
 
   const handleAddBoard = async (e) => {
     e.preventDefault();
@@ -15,8 +20,10 @@ function BoardForm() {
 
     const body = {
       title: title,
-      background_color: "#FFC0CB",
+      background_color: selectedColor,
     };
+
+    console.log("Body de la solicitud:", body);
 
     try {
       const response = await fetch(URL_BASE + "/boards", {
@@ -33,7 +40,7 @@ function BoardForm() {
         throw new Error("Error al crear el tablero");
       }
       const data = await response.json();
-      setBoards(data);
+      onBoardCreated({ title, background_color: selectedColor });
       setTitle("");
     } catch (error) {
       console.error("Error:", error.message);
@@ -46,6 +53,7 @@ function BoardForm() {
         className={styles["board-form"]}
         onSubmit={handleAddBoard}
         action=""
+        style={{ backgroundColor: selectedColor || "#E2E8F0" }}
       >
         <div className={styles["input-title-label"]}>
           <label htmlFor="board-title" className={styles.label}>
@@ -62,7 +70,11 @@ function BoardForm() {
         <div className={styles["form-options"]}>
           <div className={styles.color}>
             <spam className={styles["color-title"]}>Color</spam>
-            <img src={color} />
+            <ColorPicker
+              name="boardColor"
+              onChange={handleColorChange}
+              selectedColor={selectedColor}
+            />
           </div>
           <button className={styles["button-form"]} type="submit">
             Create
@@ -73,4 +85,4 @@ function BoardForm() {
   );
 }
 
-export default BoardForm;
+export default BoardCreate;

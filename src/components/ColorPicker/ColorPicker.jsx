@@ -1,71 +1,53 @@
+import * as React from "react";
+import styles from "./styles.module.css";
+import color from "../../assets/color.svg";
 import { useState } from "react";
-import styles from "./colorSelector.module.css";
-import URL_BASE from "../../constants"
 
-export default function ColorPicker({
-  handleColorSelect,
-  handlePalleteCardNote,
-  username,
-  note,
-}) {
-  const url = URL_BASE;
-  const colorOptions = [
-    "white",
-    "#F28B82",
-    "#FBBC04",
-    "#FFF475",
-    "#CCFF90",
-    "#A7FFEB",
-    "#CBF0F8",
-    "#AECBFA",
-    "#D7AEFB",
-    "#FDCFE8",
-  ];
+const colors = [
+  "#E2E8F0",
+  "#FECACA",
+  "#FED7AA",
+  "#FEF08A",
+  "#D9F99D",
+  "#BFDBFE",
+  "#FBCFE8",
+  "#DDD6FE",
+];
 
-  const handleColorClick = (e) => {
-    let selectColor = e.target.id;
+const ColorPicker = ({ name, onChange }) => {
+  const [showColors, setShowColors] = useState(false);
 
-    handleColorSelect(selectColor);
-
-    if (note) {
-      let endPoint = `${ENDPOINT}${username}/notes/${note.id}`;
-      let body = { color: selectColor };
-      let options = {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      };
-      console.log(endPoint);
-      fetch(endPoint, options)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log(selectColor);
-          console.log(data);
-
-          handlePalleteCardNote(selectColor);
-        })
-        .catch((err) => console.log(err));
-    }
+  const handleClick = () => {
+    setShowColors(!showColors);
   };
 
   return (
-    <div className={styles.colorMain}>
-      <div className={styles.colorBox}>
-        {colorOptions.map((color, index) => (
-          <div
-            key={index}
-            className={styles.colorOption}
-            id={color}
-            onClick={handleColorClick}
-            style={{ background: color }}
-          ></div>
-        ))}
-      </div>
+    <div className={styles.wrapper}>
+      {showColors && (
+        <div className={styles.colors}>
+          {colors.map((color) => (
+            <div
+              key={color}
+              className={styles.color}
+              style={{ backgroundColor: color }}
+              onClick={() => {
+                onChange(color);
+                setShowColors(false);
+              }}
+            />
+          ))}
+        </div>
+      )}
+      <button
+        className={styles["action-button"]}
+        type="button"
+        onClick={handleClick}
+        aria-label={name}
+      >
+        <img src={color} alt={name} />
+      </button>
     </div>
   );
-}
+};
+
+export default ColorPicker;

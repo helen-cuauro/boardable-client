@@ -1,7 +1,6 @@
-// Board.js
 import React, { useContext } from "react";
 import Header from "../Header";
-import List from "../Lists/Lists";
+import Lists  from "../Lists/Lists";
 import styles from "./styles.module.css";
 import edit from "../../assets/edit.svg";
 import BoardContext from "../../contexts/boardContext";
@@ -20,9 +19,9 @@ function Board() {
           </div>
 
           <div className={styles.list}>
-            <List />
-            <List />
-            <List />
+            <Lists />
+            <Lists />
+            <Lists />
           </div>
         </div>
       </div>

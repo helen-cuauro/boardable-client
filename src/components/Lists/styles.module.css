@@ -67,3 +67,85 @@
   gap: 4px;
   align-self: stretch;
 }
+
+.edit-list {
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
+  color: transparent;
+  position: relative;
+
+  top: 100%; /* Esto colocará el menú justo debajo del botón */
+  left: 0;
+}
+
+.transparent {
+  background-color: transparent;
+  border: none;
+}
+
+
+.container {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.title-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit-list {
+  display: flex;
+  align-items: center;
+}
+
+.edit-list span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.content-card {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  margin-right: 10px;
+}
+
+.add-card {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+
+
+

@@ -1,7 +1,84 @@
 import Header from "../Header";
 import styles from "./styles.module.css";
+import { URL_BASE, tokenKey } from "../../constants";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function MyAccount() {
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username"); // Obtener el username almacenado en el localStorage
+    if (storedUsername) {
+      setUsername(storedUsername);
+    } else {
+      // Si no hay un username almacenado, redirige a la página de registro
+      navigate("/signup");
+    }
+  }, [navigate]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+
+    const updateData = {};
+    for (const key in data) {
+      if (data[key]) {
+        updateData[key] = data[key];
+      }
+    }
+
+    console.log("Datos enviados en la solicitud PATCH:", data);
+
+    try {
+      const token = localStorage.getItem(tokenKey);
+      console.log("Token de autorización:", token);
+      const response = await fetch(`${URL_BASE}/me`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updateData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al actualizar el usuario");
+      }
+
+      console.log("Usuario actualizado correctamente");
+    } catch (error) {
+      console.error("Error al actualizar el usuario:", error.message);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    try {
+      const token = localStorage.getItem(tokenKey);
+      const response = await fetch(`${URL_BASE}/me`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al eliminar la cuenta");
+      }
+
+      localStorage.removeItem(tokenKey);
+      localStorage.removeItem("username");
+
+      navigate("/signup");
+
+      console.log("Cuenta eliminada correctamente");
+    } catch (error) {
+      console.error("Error al eliminar la cuenta:", error.message);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -9,7 +86,7 @@ function MyAccount() {
       <div className={styles.container}>
         <h1 className={styles.title}>My Account</h1>
         <div className={styles["conatainer-form"]}>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles["input-group"]}>
               <label htmlFor="username" className={styles.label}>
                 Username
@@ -19,6 +96,7 @@ function MyAccount() {
                 id="username"
                 name="username"
                 className={styles.input}
+                value={username}
               />
             </div>
             <div className={styles["input-group"]}>
@@ -30,7 +108,6 @@ function MyAccount() {
                 id="Name"
                 name="Name"
                 className={styles.input}
-                required
               />
             </div>
             <div className={styles["input-group"]}>
@@ -42,7 +119,6 @@ function MyAccount() {
                 id="email"
                 name="email"
                 className={styles.input}
-                required
               />
             </div>
             <div className={styles["input-group"]}>
@@ -54,13 +130,16 @@ function MyAccount() {
                 id="password"
                 name="password"
                 className={styles.input}
-                required
               />
             </div>
             <button type="submit" className={styles["button-update"]}>
               Update
             </button>
-            <button type="submit" className={styles["button-delete"]}>
+            <button
+              onClick={handleDeleteAccount}
+              type="button"
+              className={styles["button-delete"]}
+            >
               Delete my account
             </button>
           </form>

@@ -46,6 +46,7 @@ export function AuthProvider({ children }) {
         if (body.data.token) {
           setToken(body.data.token);
           window.localStorage.setItem(tokenKey, body.data.token);
+          window.localStorage.setItem("username", username);
         } else {
           throw new Error("Token no válido en la respuesta");
         }
