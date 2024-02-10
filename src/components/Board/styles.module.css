@@ -9,7 +9,7 @@
 
 .container-list {
   display: flex;
-  height: 928px;
+
   max-width: var(--width-7xl, 1280px);
   padding: var(--spacing-4, 16px) 0px;
   flex-direction: column;

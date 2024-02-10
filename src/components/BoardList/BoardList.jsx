@@ -6,7 +6,8 @@ import BoardContext from "../../contexts/boardContext";
 import BoardCreate from "../BoardCreate/BoardCreate";
 
 function BoardList() {
-  const { setBoardTitle, setBoardBackgroundColor } = useContext(BoardContext);
+  const { setBoardTitle, setBoardBackgroundColor, setBoardId } =
+    useContext(BoardContext);
   const [boards, setBoards] = useState([]);
 
   useEffect(() => {
@@ -25,6 +26,8 @@ function BoardList() {
         const data = await response.json();
 
         setBoards(data.data);
+        setBoardId(data.data.board.id);
+        console.log("Valor de setBoardId antes de establecerlo:", setBoardId);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -41,13 +44,15 @@ function BoardList() {
     <div>
       <ul className={styles.boardGrid}>
         <BoardCreate onBoardCreated={handleBoardCreated} />
+
         {boards.map((board) => (
           <Link
-            to="/board"
+            to={`/boards`}
             className={styles.boardLink}
             onClick={() => {
               setBoardTitle(board.title);
               setBoardBackgroundColor(board.background_color);
+              setBoardId(board.board_id);
             }}
           >
             <li
