@@ -12,18 +12,20 @@ function Header() {
   };
 
   return (
-    <div className={styles.barra}>
-      <div className={styles.header}>
-        <img src={logo} className={styles.logo} alt="Logo" />
-        <Link to="/" className={styles.titleLink}>
-          Boardable
-        </Link>
-      </div>
-      <div className={styles.navegate}>
-        <button onClick={handleMyAccountClick} className={styles.button}>
-          My account
-        </button>
-        <Logout />
+    <div className={styles.container}>
+      <div className={styles.barra}>
+        <div className={styles.header}>
+          <img src={logo} className={styles.logo} alt="Logo" />
+          <Link to="/" className={styles.titleLink}>
+            Boardable
+          </Link>
+        </div>
+        <div className={styles.navegate}>
+          <button onClick={handleMyAccountClick} className={styles.button}>
+            My account
+          </button>
+          <Logout />
+        </div>
       </div>
     </div>
   );

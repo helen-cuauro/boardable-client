@@ -40,7 +40,7 @@ function BoardCreate({ onBoardCreated }) {
         throw new Error("Error al crear el tablero");
       }
       const data = await response.json();
-      onBoardCreated({ title, background_color: selectedColor });
+      onBoardCreated({ title, background_color: selectedColor || "#E2E8F0" });
       setTitle("");
     } catch (error) {
       console.error("Error:", error.message);

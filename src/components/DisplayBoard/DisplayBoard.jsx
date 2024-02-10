@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import BoardContext from "../../contexts/boardContext";
 import BoardCreate from "../BoardCreate/BoardCreate";
 
-function BoardList() {
+function DisplayBoard() {
   const { setBoardTitle, setBoardBackgroundColor, setBoardId } =
     useContext(BoardContext);
   const [boards, setBoards] = useState([]);
@@ -69,4 +69,4 @@ function BoardList() {
   );
 }
 
-export default BoardList;
+export default DisplayBoard;

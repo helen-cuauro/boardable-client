@@ -8,7 +8,7 @@ import List from "../Lists/Lists";
 function DisplayList({ boardId }) {
   const { setListTitle, setListId } = useContext(ListContext);
   const [lists, setLists] = useState([]);
- 
+
   useEffect(() => {
     const fetchLists = async () => {
       try {
@@ -25,7 +25,7 @@ function DisplayList({ boardId }) {
         const data = await response.json();
         console.log("datos de lista", data);
         setLists(data.data);
-       
+        setListId(data.data.list.id);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -42,8 +42,8 @@ function DisplayList({ boardId }) {
     <div>
       <ul className={styles.listGrid}>
         {lists.map((list) => (
-          <li key={list.id} className={styles.boardItem}>
-            <List title={list.title} />
+          <li key={list.list_id} className={styles.boardItem}>
+            <List title={list.title} listId={list.list_id} />
           </li>
         ))}
       </ul>

@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { URL_BASE, tokenKey } from "../../constants";
+import styles from "./styles.module.css";
 
 function ListCreate({ boardId, onListCreated }) {
- 
-
   const [title, setTitle] = useState("");
 
   const handleAddList = async (e) => {
@@ -24,7 +23,7 @@ function ListCreate({ boardId, onListCreated }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-         
+
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body),
@@ -42,17 +41,23 @@ function ListCreate({ boardId, onListCreated }) {
   };
 
   return (
-    <div>
-      <h2>Create List</h2>
-      <form onSubmit={handleAddList}>
-        <input
-          type="text"
-          placeholder="Enter list title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <button type="submit">Add List</button>
-      </form>
+    <div className={styles.container}>
+      <div className={styles["title-list"]}>
+        <span className={styles.title}>List Title</span>
+        <form onSubmit={handleAddList}>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Enter list title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </form>
+      </div>
+
+      <button className={styles.button} type="submit">
+        Create new list
+      </button>
     </div>
   );
 }

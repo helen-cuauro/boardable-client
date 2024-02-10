@@ -1,11 +1,11 @@
 import styles from "./styles.module.css";
 import logo from "../../assets/Vector.svg";
 import Header from "../Header";
-import BoardList from "../BoardList";
 import BoardSort from "../BoardSort/BoardSort";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { tokenKey } from "../../constants";
+import DisplayBoard from "../DisplayBoard/DisplayBoard";
 
 function Home() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function Home() {
         <div className={styles.container}>
           <div className={styles.boards}>
             <BoardSort />
-            <BoardList />
+            <DisplayBoard />
           </div>
         </div>
       </div>
