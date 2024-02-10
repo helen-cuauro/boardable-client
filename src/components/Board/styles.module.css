@@ -4,7 +4,7 @@
   padding: 0px var(--spacing-4, 16px);
   flex-direction: column;
   align-items: center;
-  background-color: aqua;
+
 }
 
 .container-list {
@@ -16,7 +16,7 @@
   align-items: flex-start;
   gap: var(--spacing-8, 32px);
   align-self: stretch;
-  background-color: aqua;
+
 }
 
 .title.list {

@@ -6,12 +6,12 @@ import edit from "../../assets/edit.svg";
 import BoardContext from "../../contexts/boardContext";
 
 function Board() {
-  const { boardTitle } = useContext(BoardContext);
+  const { boardTitle, boardBackgroundColor } = useContext(BoardContext);
 
   return (
     <>
       <Header />
-      <div className={styles.container}>
+      <div className={styles.container} style={{ backgroundColor: boardBackgroundColor }}>
         <div className={styles["container-list"]}>
           <div className={styles["title-list"]}>
             <h1 className={styles.title}>{boardTitle}</h1>

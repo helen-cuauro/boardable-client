@@ -6,7 +6,7 @@ import BoardContext from "../../contexts/boardContext";
 import BoardCreate from "../BoardCreate/BoardCreate";
 
 function BoardList() {
-  const { setBoardTitle } = useContext(BoardContext);
+  const { setBoardTitle, setBoardBackgroundColor } = useContext(BoardContext);
   const [boards, setBoards] = useState([]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function BoardList() {
   }, []);
 
   const handleBoardCreated = (newBoard) => {
-    setBoards([...boards, newBoard]); // Agrega el nuevo tablero a la lista de tableros
+    setBoards([...boards, newBoard]);
   };
 
   return (
@@ -45,7 +45,10 @@ function BoardList() {
           <Link
             to="/board"
             className={styles.boardLink}
-            onClick={() => setBoardTitle(board.title)}
+            onClick={() => {
+              setBoardTitle(board.title);
+              setBoardBackgroundColor(board.background_color);
+            }}
           >
             <li
               key={board.id}
