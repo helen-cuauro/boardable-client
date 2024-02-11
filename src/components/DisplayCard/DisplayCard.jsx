@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { URL_BASE, tokenKey } from "../../constants";
 import CardContext from "../../contexts/cardContex";
 import Card from "../Card/Card";
+import CardCreate from "../CardCreate/CardCreate";
 
 function DisplayCard({ listId }) {
   // const { setCardTitle, setCardId } = useContext(CardContext);
@@ -53,6 +54,7 @@ function DisplayCard({ listId }) {
           </li>
         ))}
       </ul>
+      <CardCreate listId={listId} onCardCreated={handleListCreated}/>
     </div>
   );
 }

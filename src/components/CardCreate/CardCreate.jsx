@@ -38,8 +38,8 @@ function CardCreate({ listId, onCardCreated }) {
         throw new Error("Error al crear la carta");
       }
       const data = await response.json();
-      onCardCreated({ title });
       setTitle("");
+      onCardCreated(data.data);
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -60,8 +60,14 @@ function CardCreate({ listId, onCardCreated }) {
             onChange={(e) => setTitle(e.target.value)}
           />
           <div className={styles.buttons}>
-            <button className={styles.buttonadd} type="submit">Add card</button>
-            <button className={styles.buttonx}type="button" onClick={handleCancel}>
+            <button className={styles.buttonadd} type="submit">
+              Add card
+            </button>
+            <button
+              className={styles.buttonx}
+              type="button"
+              onClick={handleCancel}
+            >
               cancel
             </button>
           </div>

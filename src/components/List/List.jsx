@@ -8,11 +8,6 @@ import { useState } from "react";
 
 function List({ title, listId, onListDeleted }) {
   const [editBoard, setEditBoard] = useState(false);
-  const [showCardInput, setShowCardInput] = useState(false);
-
-  const handleToggleCardInput = () => {
-    setShowCardInput(!showCardInput);
-  };
 
   const handleEditButtonClick = () => {
     setEditBoard(true);
@@ -39,7 +34,6 @@ function List({ title, listId, onListDeleted }) {
     }
   };
 
-
   return (
     <>
       <div className={styles.container}>
@@ -52,7 +46,6 @@ function List({ title, listId, onListDeleted }) {
           />
         </div>
         <DisplayCard listId={listId} />
-        <CardCreate listId={listId} onToggleCardInput={handleToggleCardInput} />
       </div>
     </>
   );
