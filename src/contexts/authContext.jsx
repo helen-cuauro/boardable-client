@@ -37,10 +37,10 @@ export function AuthProvider({ children }) {
         "Content-Type": "application/json",
       },
     };
-
+  
     try {
       const response = await fetch(url, options);
-
+  
       if (response.ok) {
         const body = await response.json();
         if (body.data.token) {
@@ -50,6 +50,8 @@ export function AuthProvider({ children }) {
         } else {
           throw new Error("Token no válido en la respuesta");
         }
+      } else if (response.status === 401) {
+        throw new Error("Credenciales incorrectas");
       } else {
         const error = await response.json();
         throw new Error(error);
@@ -59,6 +61,7 @@ export function AuthProvider({ children }) {
       throw error;
     }
   }
+  
 
   function logout() {
     setToken(null);

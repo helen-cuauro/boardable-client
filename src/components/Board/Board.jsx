@@ -1,65 +1,48 @@
-import React, { useContext } from "react";
-import { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { URL_BASE, tokenKey } from "../../constants";
 import Header from "../Header";
 import styles from "./styles.module.css";
-import edit from "../../assets/edit.svg";
 import BoardContext from "../../contexts/boardContext";
-import ListCreate from "../ListCreate/ListCreate";
 import DisplayList from "../DisplayList/DisplayList";
-import Toggle from "../Toggle/Toggle";
+import Title from "../Title/Title";
 
 function Board() {
   const { boardTitle, boardBackgroundColor, boardId } =
     useContext(BoardContext);
   const navigate = useNavigate();
-  const [editBoard, setEditBoard] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
-  const [newTitle, setNewTitle] = useState(boardTitle);
-  useEffect(() => {
-    const storedBoardId = localStorage.getItem("boardId");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [newTitle, setNewTitle] = useState(() => {
+    const storedTitle = localStorage.getItem("editedTitle");
+    return storedTitle ? storedTitle : boardTitle;
+  });
 
-    if (!storedBoardId) {
-      // Si no hay un boardId almacenado, redirige a la página de inicio
-      navigate("/home");
-    }
-  }, [navigate]);
-
-  console.log("Valor de boardId en Board:", boardId);
-
-  const handleEditBoard = async (event) => {
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-
-    const updateData = { title: data.title }; // Solo conservar el título para actualizar
-
-    console.log("Datos enviados en la solicitud PATCH:", updateData);
-
-    try {
-      const token = localStorage.getItem(tokenKey);
-      console.log("Token de autorización:", token);
-      const response = await fetch(`${URL_BASE}/boards/${boardId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(updateData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al actualizar el tablero");
-      }
-
-      console.log("Tablero actualizado correctamente");
-      setEditingTitle(false);
-    } catch (error) {
-      console.error("Error al actualizar el tablero:", error.message);
-    }
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
-  const handleDeleteBoard = async () => {
+  const handleEdit = () => {
+    setEditingTitle(true);
+    setMenuOpen(false);
+  };
+
+  const handleTitleChange = (event) => {
+    setNewTitle(event.target.value);
+  };
+
+  const handleTitleUpdateSuccess = () => {
+    setEditingTitle(false);
+    localStorage.removeItem("editedTitle");
+    localStorage.setItem("editedTitle", newTitle);
+    handleSaveTitleLocally();
+  };
+
+  const handleTitleUpdateError = (error) => {
+    console.error("Error al actualizar el título del tablero:", error.message);
+  };
+
+  const handleDelete = async () => {
     try {
       const token = localStorage.getItem(tokenKey);
       const response = await fetch(`${URL_BASE}/boards/${boardId}`, {
@@ -74,16 +57,26 @@ function Board() {
       }
 
       navigate("/");
-
       console.log("tablero eliminado correctamente");
     } catch (error) {
       console.error("Error al eliminar tablero:", error.message);
     }
   };
 
-  const handleEditButtonClick = () => {
-    setEditBoard(true);
+  const handleSaveTitleLocally = () => {
+    localStorage.setItem("editedTitle", newTitle);
   };
+
+  useEffect(() => {
+    if (!boardId) {
+      const storedBoardId = localStorage.getItem("boardId");
+      if (!storedBoardId) {
+        navigate("/home");
+      }
+    }
+  }, [boardId, navigate]);
+
+  console.log("Valor de boardId:", boardId);
 
   return (
     <>
@@ -94,11 +87,17 @@ function Board() {
       >
         <div className={styles["container-list"]}>
           <div className={styles["title-list"]}>
-            <h1 className={styles.title}>{boardTitle}</h1>
-            <Toggle
-              onToggle={handleEditButtonClick}
-              onDelete={handleDeleteBoard}
-              editBoard={editBoard}
+            <Title
+              editingTitle={editingTitle}
+              newTitle={newTitle}
+              handleTitleChange={handleTitleChange}
+              handleToggleMenu={handleToggleMenu}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              patchUrl={`${URL_BASE}/boards/${boardId}`}
+              menuOpen={menuOpen}
+              handleTitleUpdateSuccess={handleTitleUpdateSuccess}
+              handleTitleUpdateError={handleTitleUpdateError}
             />
           </div>
 

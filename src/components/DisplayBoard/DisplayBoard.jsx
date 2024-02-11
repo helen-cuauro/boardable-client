@@ -44,7 +44,6 @@ function DisplayBoard() {
     <div>
       <ul className={styles.boardGrid}>
         <BoardCreate onBoardCreated={handleBoardCreated} />
-
         {boards.map((board) => (
           <Link
             to={`/boards`}
@@ -54,9 +53,9 @@ function DisplayBoard() {
               setBoardBackgroundColor(board.background_color);
               setBoardId(board.board_id);
             }}
+            key={board.board_id}
           >
             <li
-              key={board.id}
               className={styles.boardItem}
               style={{ backgroundColor: board.background_color }}
             >

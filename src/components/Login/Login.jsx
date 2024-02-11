@@ -20,6 +20,8 @@ function Login() {
 
     try {
       await login(username, password);
+      // Si el login es exitoso, redirecciona a la página principal
+      navigate("/");
     } catch (error) {
       setError(true);
     }
@@ -34,7 +36,7 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <img src={logo} />
+      <img src={logo} alt="Logo" />
       <h1 className={styles.title}>Welcome to Boardable</h1>
       <Form
         type="login"
@@ -42,8 +44,9 @@ function Login() {
         isSubmitting={isSubmitting}
         error={error}
       />
+      {error && <p className={styles.error}>Credenciales incorrectas. Por favor, inténtalo de nuevo.</p>}
       <Link to="/signup" className={styles.enlace}>
-        Create an account <img src={flecha} />
+        Create an account <img src={flecha} alt="Arrow" />
       </Link>
     </div>
   );

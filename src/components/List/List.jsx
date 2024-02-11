@@ -1,16 +1,31 @@
 import styles from "./styles.module.css";
-import edit from "../../assets/edit.svg";
 import DisplayCard from "../DisplayCard/DisplayCard";
-import CardCreate from "../CardCreate/CardCreate";
 import { URL_BASE, tokenKey } from "../../constants";
-import Toggle from "../Toggle/Toggle";
+import Title from "../Title/Title";
+
 import { useState } from "react";
 
 function List({ title, listId, onListDeleted }) {
   const [editBoard, setEditBoard] = useState(false);
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [newTitle, setNewTitle] = useState(title);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleEditButtonClick = () => {
     setEditBoard(true);
+    setEditingTitle(true);
+  };
+
+  const handleTitleChange = (event) => {
+    setNewTitle(event.target.value);
+  };
+
+  const handleTitleUpdateSuccess = () => {
+    setEditingTitle(false);
+  };
+
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   const handleDeleteList = async () => {
@@ -37,14 +52,17 @@ function List({ title, listId, onListDeleted }) {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles["title-list"]}>
-          <span className={styles.title}>{title}</span>
-          <Toggle
-            onToggle={handleEditButtonClick}
-            onDelete={handleDeleteList}
-            editBoard={editBoard}
-          />
-        </div>
+        <Title
+          editingTitle={editingTitle}
+          newTitle={newTitle}
+          handleTitleChange={handleTitleChange}
+          handleToggleMenu={handleToggleMenu}
+          handleEdit={handleEditButtonClick}
+          handleDelete={handleDeleteList}
+          patchUrl={`${URL_BASE}/lists/${listId}`}
+          menuOpen={menuOpen}
+          handleTitleUpdateSuccess={handleTitleUpdateSuccess}
+        />
         <DisplayCard listId={listId} />
       </div>
     </>

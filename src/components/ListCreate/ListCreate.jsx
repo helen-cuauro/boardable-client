@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
 import { URL_BASE, tokenKey } from "../../constants";
 import styles from "./styles.module.css";
 import CustomInput from "../CustomInput/CustomInput";
@@ -7,28 +6,25 @@ import CustomInput from "../CustomInput/CustomInput";
 function ListCreate({ boardId, onListCreated }) {
   const [title, setTitle] = useState("");
 
+  
+ 
   const handleAddList = async (e) => {
     e.preventDefault();
-
     const token = localStorage.getItem(tokenKey);
 
     const body = {
       title: title,
       board_id: boardId,
     };
-
-    console.log("Body de la solicitud:", body);
     try {
       const response = await fetch(`${URL_BASE}/boards/${boardId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body),
       });
-
       if (!response.ok) {
         throw new Error("Error al crear lista");
       }

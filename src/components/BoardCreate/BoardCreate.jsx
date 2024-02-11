@@ -13,25 +13,19 @@ function BoardCreate({ onBoardCreated }) {
     setSelectedColor(color);
   };
 
+
   const handleAddBoard = async (e) => {
     e.preventDefault();
-
-    // Obtener el token del localStorage
     const token = localStorage.getItem(tokenKey);
-
     const body = {
       title: title,
-      background_color: selectedColor,
+      background_color: selectedColor || "#E2E8F0",
     };
-
-    console.log("Body de la solicitud:", body);
-
     try {
       const response = await fetch(URL_BASE + "/boards", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Incluir el token como encabezado de autorización
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body),

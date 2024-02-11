@@ -6,7 +6,6 @@ import Card from "../Card/Card";
 import CardCreate from "../CardCreate/CardCreate";
 
 function DisplayCard({ listId }) {
-  // const { setCardTitle, setCardId } = useContext(CardContext);
   const [cards, setCarts] = useState([]);
 
   useEffect(() => {
@@ -23,7 +22,6 @@ function DisplayCard({ listId }) {
           throw new Error("Error al obtener las cartas");
         }
         const data = await response.json();
-        console.log("datos de cartas", data);
         setCarts(data.data);
       } catch (error) {
         console.error("Error:", error.message);

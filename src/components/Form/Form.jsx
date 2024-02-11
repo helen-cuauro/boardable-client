@@ -57,7 +57,6 @@ function Form({ type, onSubmit, error, successMessage, setError }) {
       <button type="submit" className={styles.button} onClick={handleSubmit}>
         {type === "login" ? "Login" : "Signup"}
       </button>
-      {redirect && <Link to="/">Redirecting...</Link>}
     </form>
   );
 }

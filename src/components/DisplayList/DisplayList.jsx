@@ -23,7 +23,6 @@ function DisplayList({ boardId }) {
           throw new Error("Error al obtener las listas");
         }
         const data = await response.json();
-        console.log("datos de lista", data);
         setLists(data.data);
         setListId(data.data.list.id);
       } catch (error) {

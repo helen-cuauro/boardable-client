@@ -9,11 +9,10 @@ function MyAccount() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username"); // Obtener el username almacenado en el localStorage
+    const storedUsername = localStorage.getItem("username");
     if (storedUsername) {
       setUsername(storedUsername);
     } else {
-      // Si no hay un username almacenado, redirige a la página de registro
       navigate("/signup");
     }
   }, [navigate]);

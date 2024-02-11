@@ -13,27 +13,21 @@ function CardCreate({ listId, onCardCreated }) {
 
   const handleAddCard = async (e) => {
     e.preventDefault();
-
     const token = localStorage.getItem(tokenKey);
 
     const body = {
       title: title,
       list_id: listId,
     };
-
-    console.log("Body de la solicitud:", body);
-
     try {
       const response = await fetch(`${URL_BASE}/lists/${listId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(body),
       });
-
       if (!response.ok) {
         throw new Error("Error al crear la carta");
       }

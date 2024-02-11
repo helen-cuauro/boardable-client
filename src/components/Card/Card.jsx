@@ -1,13 +1,12 @@
 import { useState } from "react";
 import styles from "./styles.module.css";
-import edit from "../../assets/edit.svg";
-import DisplayCard from "../DisplayCard/DisplayCard";
 import { URL_BASE, tokenKey } from "../../constants";
-import Toggle from "../Toggle/Toggle";
+import Title from "../Title/Title";
 
 function Card({ title, cardId, onCardDeleted }) {
-  const [editCard, setEditCard] = useState(false);
-  console.log("cardid", cardId);
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [newTitle, setNewTitle] = useState(title);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleDeleteCard = async () => {
     try {
@@ -20,30 +19,47 @@ function Card({ title, cardId, onCardDeleted }) {
       });
 
       if (!response.ok) {
-        throw new Error("Error al eliminar lista");
+        throw new Error("Error al eliminar card");
       }
       onCardDeleted(cardId);
-      console.log("lista eliminada correctamente");
+      console.log("card eliminada correctamente");
     } catch (error) {
-      console.error("Error al eliminar lista:", error.message);
+      console.error("Error al eliminar card:", error.message);
     }
   };
 
   const handleEditButtonClick = () => {
-    setEditCard(true);
+    setEditingTitle(true);
+    setMenuOpen(false);
+  };
+
+  const handleTitleChange = (event) => {
+    setNewTitle(event.target.value);
+  };
+
+  const handleTitleUpdateSuccess = () => {
+    setEditingTitle(false); 
+  };
+
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <>
       <div className={styles["title-list"]}>
-        <span className={styles.title}>{title}</span>
-        <div className={styles["toggle-container"]}>
-          <Toggle
-            onToggle={handleEditButtonClick}
-            onDelete={handleDeleteCard}
-            editBoard={editCard}
-          />
-        </div>
+        <Title
+          editingTitle={editingTitle}
+          newTitle={newTitle}
+          handleTitleChange={handleTitleChange}
+          handleToggleMenu={handleToggleMenu}
+          handleEdit={handleEditButtonClick}
+          handleDelete={handleDeleteCard}
+          patchUrl={`${URL_BASE}/cards/${cardId}`} 
+          menuOpen={menuOpen}
+          handleTitleUpdateSuccess={handleTitleUpdateSuccess}
+        
+        />
       </div>
     </>
   );

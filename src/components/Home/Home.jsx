@@ -12,7 +12,7 @@ function Home() {
   useEffect(() => {
     const token = localStorage.getItem(tokenKey);
     if (!token) {
-      navigate("/signup"); // Redirigir a la página de registro si no hay token
+      navigate("/signup"); 
     }
   }, [navigate]);
   return (
