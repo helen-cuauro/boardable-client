@@ -23,7 +23,7 @@
   padding: 5px;
   width: 124px;
   position: absolute;
-  transform: translateY(calc(-100% - 5px));
+  transform: translateY(calc(55% - 5px));
   justify-content: center;
 }
 

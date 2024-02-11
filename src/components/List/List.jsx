@@ -6,13 +6,16 @@ import { URL_BASE, tokenKey } from "../../constants";
 import Toggle from "../Toggle/Toggle";
 import { useState } from "react";
 
-function List({ title, listId }) {
-  console.log("Valor de listid en list:", listId);
+function List({ title, listId, onListDeleted }) {
   const [editBoard, setEditBoard] = useState(false);
   const [showCardInput, setShowCardInput] = useState(false);
 
   const handleToggleCardInput = () => {
     setShowCardInput(!showCardInput);
+  };
+
+  const handleEditButtonClick = () => {
+    setEditBoard(true);
   };
 
   const handleDeleteList = async () => {
@@ -29,15 +32,13 @@ function List({ title, listId }) {
         throw new Error("Error al eliminar lista");
       }
 
+      onListDeleted(listId);
       console.log("lista eliminada correctamente");
     } catch (error) {
       console.error("Error al eliminar lista:", error.message);
     }
   };
 
-  const handleEditButtonClick = () => {
-    setEditBoard(true);
-  };
 
   return (
     <>
@@ -45,19 +46,13 @@ function List({ title, listId }) {
         <div className={styles["title-list"]}>
           <span className={styles.title}>{title}</span>
           <Toggle
-              onToggle={handleEditButtonClick}
-              onDelete={handleDeleteList}
-              editBoard={editBoard}
-            />
+            onToggle={handleEditButtonClick}
+            onDelete={handleDeleteList}
+            editBoard={editBoard}
+          />
         </div>
         <DisplayCard listId={listId} />
-        {showCardInput && <CardCreate listId={listId} />}
-        <span
-          className={styles["add-card"]}
-          onClick={handleToggleCardInput}
-        >
-          + add card
-        </span>
+        <CardCreate listId={listId} onToggleCardInput={handleToggleCardInput} />
       </div>
     </>
   );

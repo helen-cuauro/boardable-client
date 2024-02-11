@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 
-function Form({
-  type,
-  onSubmit,
-  isSubmitting,
-  error,
-  successMessage,
-  setError,
-}) {
+function Form({ type, onSubmit, error, successMessage, setError }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
@@ -61,19 +54,8 @@ function Form({
           </spam>
         )}
       </div>
-      <button
-        type="submit"
-        className={styles.button}
-        disabled={isSubmitting}
-        onClick={handleSubmit}
-      >
-        {isSubmitting
-          ? type === "login"
-            ? "Iniciando sesión..."
-            : "Creando cuenta..."
-          : type === "login"
-          ? "Login"
-          : "Signup"}
+      <button type="submit" className={styles.button} onClick={handleSubmit}>
+        {type === "login" ? "Login" : "Signup"}
       </button>
       {redirect && <Link to="/">Redirecting...</Link>}
     </form>

@@ -1,0 +1,73 @@
+.form {
+  display: flex;
+
+  padding: var(--spacing-2, 8px);
+
+  flex-direction: column;
+
+  gap: var(--spacing-2, 8px);
+  border-radius: var(--rounded-md, 6px);
+  background: var(--muted, #f5f5f5);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.add-card {
+  display: flex;
+  padding: 4px var(--spacing-2, 8px);
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+  color: var(--muted-foreground, #525252);
+
+  /* text-base/leading-6/semibold */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+}
+
+.buttons {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2, 8px);
+}
+
+.buttonadd {
+  display: flex;
+  height: 36px;
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+
+  color: var(--primary-foreground, #fff);
+  border-radius: var(--rounded-md, 6px);
+  background: var(--primary, #6d28d9);
+
+  /* text-sm/leading-5/medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+
+.buttonx {
+  display: flex;
+  height: 36px;
+  padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  border-radius: var(--rounded-md, 6px);
+  background: var(--secondary, #e5e5e5);
+  color: var(--secondary-foreground, #262626);
+
+  /* text-sm/leading-5/medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}

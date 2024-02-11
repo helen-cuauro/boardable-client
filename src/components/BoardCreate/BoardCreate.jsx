@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { URL_BASE, tokenKey } from "../../constants";
 import color from "../../assets/color.svg";
 import ColorPicker from "../ColorPicker/ColorPicker";
+import CustomInput from "../CustomInput/CustomInput";
 
 function BoardCreate({ onBoardCreated }) {
   const [title, setTitle] = useState("");
@@ -55,17 +56,11 @@ function BoardCreate({ onBoardCreated }) {
         action=""
         style={{ backgroundColor: selectedColor || "#E2E8F0" }}
       >
-        <div className={styles["input-title-label"]}>
-          <label htmlFor="board-title" className={styles.label}>
-            Board title
-          </label>
-          <input
-            className={styles.input}
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
+        <CustomInput
+          label="Board Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
         <div className={styles["form-options"]}>
           <div className={styles.color}>

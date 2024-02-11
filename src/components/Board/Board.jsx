@@ -102,7 +102,9 @@ function Board() {
             />
           </div>
 
-          <div className={styles.listContainer}>
+          <div
+            className={`${styles.listContainer} ${styles.scrollableContainer}`}
+          >
             <div className={styles.list}>
               <DisplayList boardId={boardId} />
             </div>

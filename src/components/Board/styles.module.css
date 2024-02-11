@@ -17,6 +17,7 @@
   align-items: flex-start;
   gap: var(--spacing-8, 32px);
   align-self: stretch;
+  margin-inline: auto;
 }
 
 .title-list {
@@ -45,14 +46,22 @@
 }
 
 .listContainer {
-  overflow: hidden;
+  /* Hace que el contenedor sea scrollable horizontalmente */
 
-  overflow-x: auto; /* Hace que el contenedor sea scrollable horizontalmente */
-  overscroll-behavior-x: contain;
   background-color: inherit; /* Toma el color de fondo del contenedor principal */
   width: 100%; /* Asegura que ocupe todo el ancho disponible */
   padding-bottom: var(
     --spacing-4,
     16px
   ); /* Agrega un poco de espacio en la parte inferior para compensar el scroll */
+}
+
+
+.scrollableContainer {
+  /* Ajusta la altura según sea necesario */
+  height: auto; /* Ajusta este valor según tus necesidades */
+  overflow-x: auto; 
+  white-space: nowrap;/* Oculta cualquier desplazamiento vertical */
+  overflow-y: hidden;
+  max-height: 100%
 }

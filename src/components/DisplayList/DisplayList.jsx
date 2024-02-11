@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import { URL_BASE, tokenKey } from "../../constants";
 import ListCreate from "../ListCreate/ListCreate";
 import ListContext from "../../contexts/listContext";
-import List from "../Lists/Lists";
+import List from "../List/List";
 
 function DisplayList({ boardId }) {
   const { setListTitle, setListId } = useContext(ListContext);
@@ -34,6 +34,10 @@ function DisplayList({ boardId }) {
     fetchLists();
   }, []);
 
+  const handleListDeleted = (deletedListId) => {
+    setLists(lists.filter(list => list.list_id !== deletedListId));
+  };
+
   const handleListCreated = (newList) => {
     setLists([...lists, newList]);
   };
@@ -43,7 +47,7 @@ function DisplayList({ boardId }) {
       <ul className={styles.display}>
         {lists.map((list) => (
           <li key={list.list_id} className={styles.boardItem}>
-            <List title={list.title} listId={list.list_id} />
+            <List title={list.title} listId={list.list_id} onListDeleted={handleListDeleted}  />
           </li>
         ))}
       </ul>

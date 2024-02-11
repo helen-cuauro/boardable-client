@@ -32,16 +32,24 @@ function DisplayCard({ listId }) {
     fetchCards();
   }, []);
 
+  const handleCardDeleted = (deletedCardId) => {
+    setCarts(cards.filter((card) => card.card_id !== deletedCardId));
+  };
+
   const handleListCreated = (newCard) => {
     setCarts([...cards, newCard]);
   };
 
   return (
     <div>
-      <ul className={styles.listGrid}>
+      <ul className={styles.cards}>
         {cards.map((card) => (
-          <li key={card.id} className={styles.boardItem}>
-            <Card  cardId={card.card_id} title={card.title} />
+          <li key={card.id} className={styles.card}>
+            <Card
+              cardId={card.card_id}
+              title={card.title}
+              onCardDeleted={handleCardDeleted}
+            />
           </li>
         ))}
       </ul>

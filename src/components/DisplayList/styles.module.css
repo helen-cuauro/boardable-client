@@ -1,7 +1,8 @@
 .container {
   display: flex;
-  overflow-x: auto; /* Esto permite que el contenedor sea scrollable horizontalmente */
-  width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+  /* Esto permite que el contenedor sea scrollable horizontalmente */
+  width: 100%;
+  gap: 32px; /* Ajusta el ancho al 100% del contenedor padre */
 }
 
 .display {
@@ -10,14 +11,10 @@
   list-style-type: none;
   padding: 0;
   margin: 0;
+  gap: 32px;
 }
 
 .boardItem {
   margin-right: 10px; /* Espacio entre cada lista */
 }
 
-.scrollableContainer {
-  /* Ajusta la altura según sea necesario */
-  max-height: 300px; /* Ajusta este valor según tus necesidades */
-  overflow-y: hidden; /* Oculta cualquier desplazamiento vertical */
-}

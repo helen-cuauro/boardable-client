@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { URL_BASE, tokenKey } from "../../constants";
 import styles from "./styles.module.css";
+import CustomInput from "../CustomInput/CustomInput";
 
 function ListCreate({ boardId, onListCreated }) {
   const [title, setTitle] = useState("");
@@ -40,21 +41,17 @@ function ListCreate({ boardId, onListCreated }) {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles["title-list"]}>
-        <span className={styles.title}>List Title</span>
-        <form onSubmit={handleAddList}>
-          <input
-            type="text"
-            placeholder="Enter list title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button className={styles.button} type="submit">
-            Create new list
-          </button>
-        </form>
-      </div>
+    <div>
+      <form onSubmit={handleAddList} className={styles.form}>
+        <CustomInput
+          label="List Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <button className={styles.button} type="submit">
+          Create new list
+        </button>
+      </form>
     </div>
   );
 }
