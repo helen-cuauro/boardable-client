@@ -102,9 +102,10 @@ function Board() {
             />
           </div>
 
-          <div className={styles.list}>
-            <DisplayList boardId={boardId} />
-            <ListCreate boardId={boardId} />
+          <div className={styles.listContainer}>
+            <div className={styles.list}>
+              <DisplayList boardId={boardId} />
+            </div>
           </div>
         </div>
       </div>

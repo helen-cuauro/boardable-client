@@ -39,14 +39,15 @@ function DisplayList({ boardId }) {
   };
 
   return (
-    <div>
-      <ul className={styles.listGrid}>
+    <div className={`${styles.container} ${styles.scrollableContainer}`}>
+      <ul className={styles.display}>
         {lists.map((list) => (
           <li key={list.list_id} className={styles.boardItem}>
             <List title={list.title} listId={list.list_id} />
           </li>
         ))}
       </ul>
+      <ListCreate boardId={boardId} onListCreated={handleListCreated} />
     </div>
   );
 }

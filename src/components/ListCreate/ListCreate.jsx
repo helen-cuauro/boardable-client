@@ -17,7 +17,6 @@ function ListCreate({ boardId, onListCreated }) {
     };
 
     console.log("Body de la solicitud:", body);
-
     try {
       const response = await fetch(`${URL_BASE}/boards/${boardId}`, {
         method: "POST",
@@ -33,7 +32,7 @@ function ListCreate({ boardId, onListCreated }) {
         throw new Error("Error al crear lista");
       }
       const data = await response.json();
-      onListCreated({ title });
+      onListCreated(data.data);
       setTitle("");
     } catch (error) {
       console.error("Error:", error.message);
@@ -46,18 +45,16 @@ function ListCreate({ boardId, onListCreated }) {
         <span className={styles.title}>List Title</span>
         <form onSubmit={handleAddList}>
           <input
-            className={styles.input}
             type="text"
             placeholder="Enter list title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <button className={styles.button} type="submit">
+            Create new list
+          </button>
         </form>
       </div>
-
-      <button className={styles.button} type="submit">
-        Create new list
-      </button>
     </div>
   );
 }

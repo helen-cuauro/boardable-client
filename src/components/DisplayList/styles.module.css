@@ -1,5 +1,23 @@
-.listGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+.container {
+  display: flex;
+  overflow-x: auto; /* Esto permite que el contenedor sea scrollable horizontalmente */
+  width: 100%; /* Ajusta el ancho al 100% del contenedor padre */
+}
+
+.display {
+  display: flex;
+  flex-direction: row; /* Asegura que las listas se apilen horizontalmente */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.boardItem {
+  margin-right: 10px; /* Espacio entre cada lista */
+}
+
+.scrollableContainer {
+  /* Ajusta la altura según sea necesario */
+  max-height: 300px; /* Ajusta este valor según tus necesidades */
+  overflow-y: hidden; /* Oculta cualquier desplazamiento vertical */
 }
