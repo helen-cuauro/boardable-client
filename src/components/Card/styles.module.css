@@ -50,9 +50,9 @@ ul {
   font-size: 18px;
   font-weight: 600;
   line-height: 32px;
-  flex: 1; /* Para que el título tome todo el espacio restante */
+  flex: 1; 
 }
 
 .toggle-container {
-  margin-left: 10px; /* O el valor deseado para separar el toggle del título */
+  margin-left: 10px; 
 }

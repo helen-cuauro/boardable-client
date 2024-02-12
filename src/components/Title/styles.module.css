@@ -1,250 +1,241 @@
 .container {
-    display: flex;
-    max-width: 1440px;
-    padding: 0px var(--spacing-4, 16px);
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-  }
-  
-  .container-list {
-    display: flex;
-    width: 100%;
-    max-width: var(--width-7xl, 1280px);
-    padding: var(--spacing-4, 16px) 0px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-8, 32px);
-    align-self: stretch;
-    margin-inline: auto;
-  }
-  
-  .title-list {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-4, 16px);
-  }
-  
-  .title {
-    color: #171717;
-    font-family: Inter;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 32px;
-  }
-  
-  .edit {
-    width: 24px;
-    height: 24px;
-  }
-  
-  .list {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-8, 32px);
-  }
-  
-  .listContainer {
-    /* Hace que el contenedor sea scrollable horizontalmente */
-  
-    background-color: inherit; /* Toma el color de fondo del contenedor principal */
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-    padding-bottom: var(
-      --spacing-4,
-      16px
-    ); /* Agrega un poco de espacio en la parte inferior para compensar el scroll */
-  }
-  
-  
-  .scrollableContainer {
-    /* Ajusta la altura según sea necesario */
-    height: auto; /* Ajusta este valor según tus necesidades */
-    overflow-x: auto; 
-    white-space: nowrap;/* Oculta cualquier desplazamiento vertical */
-    overflow-y: hidden;
-    max-height: 100%
-  }
+  display: flex;
+  max-width: 1440px;
+  padding: 0px var(--spacing-4, 16px);
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
 
-  .toggleContainer {
-    position: relative;
-  }
-  
-  .menu {
-    position: absolute;
-    right: -36px;
-    bottom: -60px;
-    top: 100%;
-    display: flex;
-  
-    padding: var(--spacing-2, 8px);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px;
-    z-index: 1; /* Para asegurar que el menú esté sobre otros elementos */
-  }
-  
-  .edit {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-  }
-  
-  .editar {
-    color: var(--foreground, #171717);
-    min-width: var(--spacing-24, 80px);
-    /* text-sm/leading-5/medium */
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    align-items: flex-start;
-    border: none;
-    background-color: inherit;
-    text-align: left; 
-  }
-  
+.container-list {
+  display: flex;
+  width: 100%;
+  max-width: var(--width-7xl, 1280px);
+  padding: var(--spacing-4, 16px) 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-8, 32px);
+  align-self: stretch;
+  margin-inline: auto;
+}
 
-  .container {
-    display: flex;
-    width: 280px;
-    padding: var(--spacing-2, 8px);
-    flex-direction: column;
-  
-    gap: var(--spacing-2, 8px);
-    border-radius: var(--rounded-md, 6px);
-    background: var(--muted, #f5f5f5);
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  }
-  
-  .title-list {
-    display: flex;
-    padding: 0px var(--spacing-2, 8px);
-    align-items: flex-start;
-    gap: 4px;
-    align-self: stretch;
-  }
-  
-  .title {
-    color: var(--foreground, #171717);
-  
-    /* text-lg/leading-8/semibold */
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px; /* 177.778% */
-    flex: 1 0 0;
-  }
-  
-  .edit {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-  }
-  
-  .content-card {
-    display: flex;
-    padding: var(--spacing-2, 8px);
-    align-items: flex-start;
-    gap: 4px;
-    align-self: stretch;
-  
-    border-radius: var(--rounded-md, 6px);
-    background: var(--background, #fff);
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  }
-  
-  .content {
-    color: var(--foreground, #171717);
-  
-    /* text-base/leading-7/regular */
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 28px; /* 175% */
-    flex: 1 0 0;
-  }
-  
-  .add-card {
-    display: flex;
-    padding: 4px var(--spacing-2, 8px);
-    align-items: flex-start;
-    gap: 4px;
-    align-self: stretch;
-  }
-  
-  .edit-list {
-    height: 25px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 25px;
-    cursor: pointer;
-    border: none;
-    color: transparent;
-    position: relative;
-  
-    top: 100%; /* Esto colocará el menú justo debajo del botón */
-    left: 0;
-  }
-  
-  .transparent {
-    background-color: transparent;
-    border: none;
-  }
-  
-  .title-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .edit-list {
-    display: flex;
-    align-items: center;
-  }
-  
-  .edit-list span {
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .content-card {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .content {
-    margin-right: 10px;
-  }
-  
-  .add-card {
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  .action-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  input[type="text"] {
-    padding: 5px;
-  }
-  
+.title-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4, 16px);
+}
+
+.title {
+  color: #171717;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.edit {
+  width: 24px;
+  height: 24px;
+}
+
+.list {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-8, 32px);
+}
+
+.listContainer {
+  background-color: inherit;
+  width: 100%;
+  padding-bottom: var(--spacing-4, 16px);
+}
+
+.scrollableContainer {
+  height: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  overflow-y: hidden;
+  max-height: 100%;
+}
+
+.toggleContainer {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  right: -36px;
+  bottom: -60px;
+  top: 100%;
+  display: flex;
+
+  padding: var(--spacing-2, 8px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1; 
+}
+
+.edit {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.editar {
+  color: var(--foreground, #171717);
+  min-width: var(--spacing-24, 80px);
+  /* text-sm/leading-5/medium */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  align-items: flex-start;
+  border: none;
+  background-color: inherit;
+  text-align: left;
+}
+
+.container {
+  display: flex;
+  width: 280px;
+  padding: var(--spacing-2, 8px);
+  flex-direction: column;
+
+  gap: var(--spacing-2, 8px);
+  border-radius: var(--rounded-md, 6px);
+  background: var(--muted, #f5f5f5);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.title-list {
+  display: flex;
+  padding: 0px var(--spacing-2, 8px);
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.title {
+  color: var(--foreground, #171717);
+
+  /* text-lg/leading-8/semibold */
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 177.778% */
+  flex: 1 0 0;
+}
+
+.edit {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.content-card {
+  display: flex;
+  padding: var(--spacing-2, 8px);
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+
+  border-radius: var(--rounded-md, 6px);
+  background: var(--background, #fff);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content {
+  color: var(--foreground, #171717);
+
+  /* text-base/leading-7/regular */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
+  flex: 1 0 0;
+}
+
+.add-card {
+  display: flex;
+  padding: 4px var(--spacing-2, 8px);
+  align-items: flex-start;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.edit-list {
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  cursor: pointer;
+  border: none;
+  color: transparent;
+  position: relative;
+
+  top: 100%; 
+  left: 0;
+}
+
+.transparent {
+  background-color: transparent;
+  border: none;
+}
+
+.title-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit-list {
+  display: flex;
+  align-items: center;
+}
+
+.edit-list span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.content-card {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  margin-right: 10px;
+}
+
+.add-card {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  padding: 5px;
+}

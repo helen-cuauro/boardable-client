@@ -39,7 +39,7 @@
 }
 
 .title-list {
-  display: flex; /* Change display property to flex */
+  display: flex; 
   flex-direction: column;
   align-items: flex-start;
   gap: var(--spacing-2, 8px);
@@ -55,7 +55,7 @@
   border-radius: var(--rounded-md, 6px);
   border: 1px solid var(--border, #d4d4d4);
   background: var(--background, #fff);
-  flex-grow: 1; /* flex-grow will now work as expected */
+  flex-grow: 1; 
 }
 
 .form {
