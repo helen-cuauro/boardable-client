@@ -13,7 +13,6 @@ function BoardCreate({ onBoardCreated }) {
     setSelectedColor(color);
   };
 
-
   const handleAddBoard = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem(tokenKey);
@@ -35,7 +34,7 @@ function BoardCreate({ onBoardCreated }) {
         throw new Error("Error al crear el tablero");
       }
       const data = await response.json();
-      onBoardCreated({ title, background_color: selectedColor || "#E2E8F0" });
+      onBoardCreated(data.data)
       setTitle("");
     } catch (error) {
       console.error("Error:", error.message);

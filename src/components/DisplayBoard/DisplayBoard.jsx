@@ -26,8 +26,6 @@ function DisplayBoard() {
         const data = await response.json();
 
         setBoards(data.data);
-        setBoardId(data.data.board.id);
-        console.log("Valor de setBoardId antes de establecerlo:", setBoardId);
       } catch (error) {
         console.error("Error:", error.message);
       }
